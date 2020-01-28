@@ -29,7 +29,7 @@ def auau(bot, update):
 	print("Testeauau")
 
 def main():
-	updater = Updater('704579297:AAH5MQ6dH-6dWDovssxRb0T1rcu4CS6DZpQ',use_context=True)
+	updater = Updater('704579297:AAH5MQ6dH-6dWDovssxRb0T1rcu4CS6DZpQ')
 	dp = updater.dispatcher
 	dp.add_handler(CommandHandler('auau',auau))
 	dp.add_handler(CommandHandler('boobs',boobs))
