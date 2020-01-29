@@ -57,7 +57,7 @@ def main():
 	dp.add_handler(CommandHandler("auau", auau))
 	dp.add_handler(CommandHandler("boobs", boobs))
 	dp.add_handler(CommandHandler("briga", briga))
-	dp.add_handler(CommandHandler("me_da_dinheiro?", me_da_dinheiro))
+	dp.add_handler(CommandHandler("me_da_dinheiro", me_da_dinheiro))
 
 	# on noncommand i.e message - echo the message on Telegram
 	# dp.add_handler(MessageHandler(Filters.text, echo))
