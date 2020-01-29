@@ -1,45 +1,4 @@
-"""from telegram.ext import Updater, InlineQueryHandler, CommandHandler
-import requests
-import re
 
-
-def get_url_auau():
-	contents = requests.get('https://random.dog/woof.json').json()
-	url = contents['url']
-	return url
-
-def get_url_boobs():
-	contents = requests.get('http://api.oboobs.ru/boobs/0/1/random').json()
-	url = contents[0].contents['preview']
-	return url
-
-
-def boobs(bot, update):
-	url = "http://media.oboobs.ru/"+get_url_boobs()
-	url = get_url_auau()
-	chat_id = update.message.chat_id
-	bot.send_message(chat_id=chat_id, text=url)
-	bot.send_photo(chat_id=chat_id, photo=url)	
-	print("Testeboobs")
-	
-def auau(bot, update):
-	url = get_url_auau()
-	chat_id = update.message.chat_id
-	bot.send_photo(chat_id=chat_id, photo=url)
-
-def main():
-	updater = Updater('704579297:AAH5MQ6dH-6dWDovssxRb0T1rcu4CS6DZpQ')
-	dp = updater.dispatcher
-	dp.add_handler(CommandHandler('auau',auau))
-	dp.add_handler(CommandHandler('boobs',boobs))
-	updater.start_polling()
-	updater.idle()
-
-if __name__ == '__main__':
-	main()
-	
-	"""
-	
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # This program is dedicated to the public domain under the CC0 license.
@@ -56,6 +15,8 @@ bot.
 """
 
 import logging
+import requests
+import re
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -65,6 +26,26 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
+def get_url_auau():
+	contents = requests.get('https://random.dog/woof.json').json()
+	url = contents['url']
+	return url
+
+def get_url_boobs():
+	contents = requests.get('http://api.oboobs.ru/boobs/0/1/random').json()
+	url = contents[0]['preview']
+	return url
+
+def boobs(bot, update):
+	url = "http://media.oboobs.ru/"+get_url_boobs()
+	chat_id = update.message.chat_id
+	bot.send_message(chat_id=chat_id, text=url)
+	bot.send_photo(chat_id=chat_id, photo=url)	
+	
+def auau(bot, update):
+	url = get_url_auau()
+	chat_id = update.message.chat_id
+	bot.send_photo(chat_id=chat_id, photo=url)
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
@@ -101,9 +82,11 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("auau", auau))
+    dp.add_handler(CommandHandler("boobs", boobs))
 
     # on noncommand i.e message - echo the message on Telegram
-    dp.add_handler(MessageHandler(Filters.text, echo))
+    # dp.add_handler(MessageHandler(Filters.text, echo))
 
     # log all errors
     dp.add_error_handler(error)
