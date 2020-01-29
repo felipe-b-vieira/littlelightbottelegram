@@ -41,11 +41,13 @@ def boobs(update, context):
 	chat_id = update.message.chat_id
 	context.bot.send_message(chat_id=chat_id, text=url)
 	context.bot.send_photo(chat_id=chat_id, photo=url)	
+	update.message.reply_text('Boobs!')
 	
 def auau(update, context):
 	url = get_url_auau()
 	chat_id = update.message.chat_id
 	context.bot.send_photo(chat_id=chat_id, photo=url)
+	update.message.reply_text('Auau!')
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
