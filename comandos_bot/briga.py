@@ -2,7 +2,7 @@
 #função responsável por gerar a briga
 def briga(update, context):
 	entidadesMensagem = update.message.parse_entities(types='mention')
-	print(entidadesMensage)
+	print(entidadesMensagem)
 	
 	membrosDaBriga = []
 	
