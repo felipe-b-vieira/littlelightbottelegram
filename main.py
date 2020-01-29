@@ -11,7 +11,9 @@ sys.path.insert(0,'./comandos_bot')
 from auau import auau
 from boobs import boobs
 from start import start
+from briga import briga
 from help import help
+from medadinheiro import me_da_dinheiro
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
@@ -54,6 +56,8 @@ def main():
 	dp.add_handler(CommandHandler("help", help))
 	dp.add_handler(CommandHandler("auau", auau))
 	dp.add_handler(CommandHandler("boobs", boobs))
+	dp.add_handler(CommandHandler("briga", briga))
+	dp.add_handler(CommandHandler("me_da_dinheiro?", me_da_dinheiro))
 
 	# on noncommand i.e message - echo the message on Telegram
 	# dp.add_handler(MessageHandler(Filters.text, echo))
