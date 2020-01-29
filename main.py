@@ -36,16 +36,16 @@ def get_url_boobs():
 	url = contents[0]['preview']
 	return url
 
-def boobs(bot, update):
+def boobs(update, context):
 	url = "http://media.oboobs.ru/"+get_url_boobs()
 	chat_id = update.message.chat_id
-	bot.send_message(chat_id=chat_id, text=url)
-	bot.send_photo(chat_id=chat_id, photo=url)	
+	context.bot.send_message(chat_id=chat_id, text=url)
+	context.bot.send_photo(chat_id=chat_id, photo=url)	
 	
-def auau(bot, update):
+def auau(update, context):
 	url = get_url_auau()
 	chat_id = update.message.chat_id
-	bot.send_photo(chat_id=chat_id, photo=url)
+	context.bot.send_photo(chat_id=chat_id, photo=url)
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
