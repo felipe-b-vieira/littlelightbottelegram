@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from mongoengine import *
 import logging
 import os
 
@@ -26,6 +26,9 @@ logger = logging.getLogger(__name__)
 
 #variaveis inicias globais
 token_telegram = os.environ.get('TOKENTELEGRAM', None)
+user_mongodb = os.environ.get('USERMONGOATLAS', None)
+pass_mongodb = os.environ.get('PASSWORDMONGOATLAS', None)
+cluster_name = os.environ.get('CLUSTERNAME', None)
 
 
 
@@ -40,6 +43,19 @@ def error(update, context):
 	"""Log Errors caused by Updates."""
 	logger.warning('Update "%s" caused error "%s"', update, context.error)
 
+	
+def conectaDB():
+	connect('mongodb+srv://"+user_mongodb+":+"pass_mongodb"+@"+cluster_name+".gcp.mongodb.net/test?retryWrites=true&w=majority')
+	post1 = PostTeste(title='Using MongoEngine')
+	post1.tags = ['mongodb', 'mongoengine']
+	post1.save()
+
+	
+class PostTeste(Document):
+    title = StringField(required=True, max_length=200)
+    posted = DateTimeField(default=datetime.datetime.utcnow)
+    tags = ListField(StringField(max_length=50))
+    meta = {'allow_inheritance': True}
 
 def main():
 	"""Start the bot."""
@@ -51,6 +67,9 @@ def main():
 	# Get the dispatcher to register handlers
 	dp = updater.dispatcher
 
+	#conecta com o mongodbatlas
+	conectaDB()
+	
 	# on different commands - answer in Telegram
 	dp.add_handler(CommandHandler("start", start))
 	dp.add_handler(CommandHandler("help", help))
