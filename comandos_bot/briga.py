@@ -10,4 +10,4 @@ def briga(update, context):
 		print(nomes)
 		membrosDaBriga.append(nomes)
 		
-	update.message.reply_text(membrosDaBriga[0].username+" bateu em "+membrosDaBriga[1].username)
+	update.message.reply_text(membrosDaBriga[0]+" bateu em "+membrosDaBriga[1])
