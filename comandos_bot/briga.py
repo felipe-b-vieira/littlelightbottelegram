@@ -8,7 +8,7 @@ def briga(update, context):
 	
 	for entid in entidadesMensagem:
 		print(entid)
-		print(entid.user)
-		membrosDaBriga.append(entid.user)
+		print(entid.parse_entity())
+		membrosDaBriga.append(entid.parse_entity())
 		
 	update.message.reply_text(membrosDaBriga[0].username+" bateu em "+membrosDaBriga[1].username)
