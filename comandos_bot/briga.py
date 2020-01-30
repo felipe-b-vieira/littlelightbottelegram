@@ -6,9 +6,8 @@ def briga(update, context):
 	
 	membrosDaBriga = []
 	
-	for entid in entidadesMensagem:
-		print(entid)
-		print(entid.parse_entity())
-		membrosDaBriga.append(entid.parse_entity())
+	for nomes in entidadesMensagem.values():
+		print(nomes)
+		membrosDaBriga.append(nomes)
 		
 	update.message.reply_text(membrosDaBriga[0].username+" bateu em "+membrosDaBriga[1].username)
