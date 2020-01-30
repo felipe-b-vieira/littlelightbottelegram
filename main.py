@@ -28,6 +28,7 @@ logger = logging.getLogger(__name__)
 token_telegram = os.environ.get('TOKENTELEGRAM', None)
 user_mongodb = os.environ.get('USERMONGOATLAS', None)
 pass_mongodb = os.environ.get('PASSWORDMONGOATLAS', None)
+db_mongodb = os.environ.get('DBNAMEMONGODB', None)
 cluster_name = os.environ.get('CLUSTERNAME', None)
 
 
@@ -45,7 +46,8 @@ def error(update, context):
 
 	
 def conectaDB():
-	connect('mongodb+srv://"+user_mongodb+":+"pass_mongodb"+@"+cluster_name+".gcp.mongodb.net/test?retryWrites=true&w=majority')
+	connect( db=db_mongodb, username=user_mongodb, password=pass_mongodb, host=cluster_name+".gcp.mongodb.net)
+	#connect('mongodb+srv://"+user_mongodb+":+"pass_mongodb"+@"+cluster_name+".gcp.mongodb.net/test?retryWrites=true&w=majority')
 	post1 = PostTeste(title='Using MongoEngine')
 	post1.tags = ['mongodb', 'mongoengine']
 	post1.save()
