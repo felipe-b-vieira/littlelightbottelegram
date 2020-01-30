@@ -46,8 +46,8 @@ def error(update, context):
 
 	
 def conectaDB():
-	connect( db=db_mongodb, username=user_mongodb, password=pass_mongodb, host=cluster_name+".gcp.mongodb.net")
-	#connect('mongodb+srv://"+user_mongodb+":+"pass_mongodb"+@"+cluster_name+".gcp.mongodb.net/test?retryWrites=true&w=majority')
+	#connect( db=db_mongodb, username=user_mongodb, password=pass_mongodb, host=cluster_name+".gcp.mongodb.net")
+	connect(host='mongodb+srv://'+user_mongodb+':+'pass_mongodb'+@'+cluster_name+'.gcp.mongodb.net/test?retryWrites=true&w=majority')
 	post1 = PostTeste(title='Using MongoEngine')
 	post1.tags = ['mongodb', 'mongoengine']
 	post1.save()
