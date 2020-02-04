@@ -1,5 +1,5 @@
 # littlelightbottelegram
 
-#Bot do telegram feito por mim para meus amigos com coisas aleatórias
+#Pasta responsável por conter códigos simples e usados para testar funcionalidades do bot
 
-No momento, para rodar o virtualenv usar C:\Users\Felgal\Desktop\telegrambot\littlelightbotenv\Scripts\activate.bat
+- boobsteste.py é responsável por pegar a url da imagem retirada da API e retornar o link correto.
