@@ -2,7 +2,7 @@ from mongoengine import *
 
 	
 class Usuario(Document):
-    id = IntField(required=True, max_length=200)
+    idTelegram = IntField(required=True, max_length=200)
     is_bot = BooleanField(required=True, default = False)
     username = StringField( max_length=200)
     full_name = StringField(required=True, max_length=200)
