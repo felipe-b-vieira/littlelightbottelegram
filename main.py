@@ -75,7 +75,7 @@ def main():
 	dp.add_handler(CommandHandler("me_da_dinheiro", me_da_dinheiro))
 	
 	# vai ler os textos dos grupos cada vez que uma mensagem for mandada, verificar se já tenho todos os usuários do grupo salvo, senão, salvo o novo usuário
-	dp.add_handler(MessageHandler([Filters.text], salva_usuario))
+	dp.add_handler(MessageHandler(Filters.text, salva_usuario))
 
 	# on noncommand i.e message - echo the message on Telegram
 	# dp.add_handler(MessageHandler(Filters.text, echo))
