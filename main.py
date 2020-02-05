@@ -49,7 +49,7 @@ def error(update, context):
 	
 def conectaDB():
 	#connect( db=db_mongodb, username=user_mongodb, password=pass_mongodb, host=cluster_name+".gcp.mongodb.net")
-	print('mongodb+srv://'+user_mongodb+':'+pass_mongodb+'@'+cluster_name+'.gcp.mongodb.net/test?retryWrites=true&w=majority')
+	#print('mongodb+srv://'+user_mongodb+':'+pass_mongodb+'@'+cluster_name+'.gcp.mongodb.net/test?retryWrites=true&w=majority')
 	connect(host='mongodb://'+user_mongodb+':'+pass_mongodb+'@'+cluster_name+'-shard-00-00-'+cluster_code+'.gcp.mongodb.net:27017,'+cluster_name+'-shard-00-01-'+cluster_code+'.gcp.mongodb.net:27017,'+cluster_name+'-shard-00-02-'+cluster_code+'.gcp.mongodb.net:27017/'+db_mongodb+'?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority')
 
 
