@@ -7,12 +7,14 @@ import os
 #adiciona as pastas com os outros arquivos python
 import sys
 sys.path.insert(0,'./comandos_bot')
+sys.path.insert(0,'./controleUsuarios')
 
 from auau import auau
 from boobs import boobs
 from start import start
 from briga import briga
 from help import help
+from controle_de_usuarios import salva_usuario
 from medadinheiro import me_da_dinheiro
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -48,16 +50,8 @@ def error(update, context):
 def conectaDB():
 	#connect( db=db_mongodb, username=user_mongodb, password=pass_mongodb, host=cluster_name+".gcp.mongodb.net")
 	print('mongodb+srv://'+user_mongodb+':'+pass_mongodb+'@'+cluster_name+'.gcp.mongodb.net/test?retryWrites=true&w=majority')
-	connect(host='mongodb://'+user_mongodb+':'+pass_mongodb+'@'+cluster_name+'-shard-00-00-'+cluster_code+'.gcp.mongodb.net:27017,'+cluster_name+'-shard-00-01-'+cluster_code+'.gcp.mongodb.net:27017,'+cluster_name+'-shard-00-02-'+cluster_code+'.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority')
-	post1 = PostTeste(title='Using MongoEngine')
-	post1.tags = ['mongodb', 'mongoengine']
-	post1.save()
+	connect(host='mongodb://'+user_mongodb+':'+pass_mongodb+'@'+cluster_name+'-shard-00-00-'+cluster_code+'.gcp.mongodb.net:27017,'+cluster_name+'-shard-00-01-'+cluster_code+'.gcp.mongodb.net:27017,'+cluster_name+'-shard-00-02-'+cluster_code+'.gcp.mongodb.net:27017/'+db_mongodb+'?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority')
 
-	
-class PostTeste(Document):
-    title = StringField(required=True, max_length=200)
-    tags = ListField(StringField(max_length=50))
-    meta = {'allow_inheritance': True}
 
 def main():
 	"""Start the bot."""
@@ -79,6 +73,9 @@ def main():
 	dp.add_handler(CommandHandler("boobs", boobs))
 	dp.add_handler(CommandHandler("briga", briga))
 	dp.add_handler(CommandHandler("me_da_dinheiro", me_da_dinheiro))
+	
+	# vai ler os textos dos grupos cada vez que uma mensagem for mandada, verificar se já tenho todos os usuários do grupo salvo, senão, salvo o novo usuário
+	dp.add_handler(MessageHandler([Filters.text], salva_usuario))
 
 	# on noncommand i.e message - echo the message on Telegram
 	# dp.add_handler(MessageHandler(Filters.text, echo))
