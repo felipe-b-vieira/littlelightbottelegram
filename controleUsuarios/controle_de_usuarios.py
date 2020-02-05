@@ -9,10 +9,7 @@ class Usuario(Document):
 
 #função responsável por salvar o usuário no banco de dados(AINDA SEM PROTEÇÂO DE QUANTIDADE)
 def salva_usuario(update, context):
-	print(update.message.from_user)
 	usuarioAtual = update.message.from_user
-	print(usuarioAtual.id)
-	print(usuarioAtual['id'])
 	usuarioDB = Usuario(idTelegram =usuarioAtual.id)
 	usuarioDB.is_bot = usuarioAtual.is_bot
 	usuarioDB.username = usuarioAtual.username
