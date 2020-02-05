@@ -9,8 +9,8 @@ class Usuario(Document):
 
 #função responsável por salvar o usuário no banco de dados(AINDA SEM PROTEÇÂO DE QUANTIDADE)
 def salva_usuario(update, context):
-	console.log(update.message.from_user)
-	console.log(update.message.from_user())
+	print(update.message.from_user)
+	print(update.message.from_user())
 	usuarioAtual = update.message.from_user
 	
 	usuarioDB = Usuario(id=usuarioAtual.id)
