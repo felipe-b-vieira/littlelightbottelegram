@@ -11,7 +11,8 @@ class Usuario(Document):
 def salva_usuario(update, context):
 	print(update.message.from_user)
 	usuarioAtual = update.message.from_user
-	
+	print(usuarioAtual.id)
+	print(usuarioAtual['id'])
 	usuarioDB = Usuario(id=usuarioAtual.id)
 	usuarioDB.is_bot = usuarioAtual.is_bot
 	usuarioDB.username = usuarioAtual.username
