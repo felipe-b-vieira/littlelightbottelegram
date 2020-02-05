@@ -13,7 +13,7 @@ def salva_usuario(update, context):
 	usuarioAtual = update.message.from_user
 	print(usuarioAtual.id)
 	print(usuarioAtual['id'])
-	usuarioDB = Usuario(id=usuarioAtual.id)
+	usuarioDB = Usuario(idTelegram =usuarioAtual.id)
 	usuarioDB.is_bot = usuarioAtual.is_bot
 	usuarioDB.username = usuarioAtual.username
 	usuarioDB.full_name = usuarioAtual.full_name
