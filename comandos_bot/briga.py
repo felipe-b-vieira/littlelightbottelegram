@@ -1,4 +1,8 @@
 from mongoengine import *
+import os
+
+#senha para verificar se pode adicionar
+senha_admin = os.environ.get('SENHAADMINTELEGRAM', None)
 
 	
 class TextoBriga(Document):
@@ -8,6 +12,7 @@ class TextoBriga(Document):
 #função responsável por gerar a briga
 def briga(update, context):
 	entidadesMensagem = update.message.parse_entities(types='mention')
+	
 	
 	#pega as menções e transforma em nomes
 	membrosDaBriga = []
@@ -66,19 +71,20 @@ def briga(update, context):
 #função responsável por adicionar uma nova briga
 def adiciona_briga(update, context):
 	textoAtual = update.message.text
-	print(textoAtual)
-	textoAtual = textoAtual.split("@")
-	print(textoAtual)
-	senha = textoAtual[0]
-	print(senha)
-	if(senha_admin==senha):
-		textoDividido = textoAtual[1].split("\X")
-		tamTextoDividido = len(textoDividido)
-		if(tamTextoDividido>0):
-			brigaDB = TextoBriga(acao = textoAtual[1])
-			brigaDB.quantUsuarios = tamTextoDividido-1
-			brigaDB.save()
+	textoAtual = textoAtual.split(" ", 1)
+	if(len(textoAtual)>1):
+		textoAtual = textoAtual[1].split("@")
+		senha = textoAtual[0]
+		if(senha_admin==senha):
+			textoDividido = textoAtual[1].split("\X")
+			tamTextoDividido = len(textoDividido)
+			if(tamTextoDividido>0):
+				brigaDB = TextoBriga(acao = textoAtual[1])
+				brigaDB.quantUsuarios = tamTextoDividido-1
+				brigaDB.save()
+			else:
+				update.message.reply_text("Mensagem inválida")
 		else:
-			update.message.reply_text("Mensagem inválida")
+			update.message.reply_text("Senha incorreta")
 	else:
-		update.message.reply_text("Senha incorreta")
+		update.message.reply_text("Mensagem inválida")
