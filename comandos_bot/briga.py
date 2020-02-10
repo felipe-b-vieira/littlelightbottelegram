@@ -21,16 +21,11 @@ def briga(update, context):
 
 	#verifica a quantidade de menções para poder decidir o que vai fazer
 	quantidadeNaBriga = len(membrosDaBriga)
-	print("teste")
 	#se a quantidade for 0, não marcou ninguem então a pessoa se bate, escolhe o que não marca ninguem e o que tem uma marcação no meio
 	if(quantidadeNaBriga==1):
 		brigaAtual = TextoBriga.objects.filter(quantUsuarios_lte=1).aggregate( [ { "$sample": { size: 1 } } ])
 		if(not brigaAtual == None):
-			textosBrigas = brigaAtual.acao.split("\X")
-			if(len(textosBrigas)==2):
-				update.message.reply_text(textosBrigas[0]+update.message.from_user.username+textosBrigas[1])
-			else:
-				update.message.reply_text(brigaAtual.acao)
+			update.message.reply_text(brigaAtual.acao)
 		else:
 			update.message.reply_text("Você bateu em si mesmo, bom trabalho")
 	
