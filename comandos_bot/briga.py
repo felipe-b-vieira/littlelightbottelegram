@@ -67,18 +67,4 @@ def briga(update, context):
 def adiciona_briga(update, context):
 	textoAtual = update.message.text
 	print(textoAtual)
-	textoAtual = textoAtual.split("@")
-	print(textoAtual)
-	senha = textoAtual[0]
-	print(senha)
-	if(senha_admin==senha):
-		textoDividido = textoAtual[1].split("\X")
-		tamTextoDividido = len(textoDividido)
-		if(tamTextoDividido>0):
-			brigaDB = TextoBriga(acao = textoAtual[1])
-			brigaDB.quantUsuarios = tamTextoDividido-1
-			brigaDB.save()
-		else:
-			update.message.reply_text("Mensagem inválida")
-	else:
-		update.message.reply_text("Senha incorreta")
+	update.message.reply_text("Senha incorreta")
