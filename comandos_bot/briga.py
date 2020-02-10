@@ -19,7 +19,7 @@ def briga(update, context):
 	
 	#se a quantidade for 0, não marcou ninguem então a pessoa se bate, escolhe o que não marca ninguem e o que tem uma marcação no meio
 	if(quantidadeNaBriga==0):
-		brigaAtual = TextoBriga.objects.filter(quantUsuarios_lte=1).aggregate( [ { $sample: { size: 1 } } ])
+		brigaAtual = TextoBriga.objects.filter(quantUsuarios_lte=1).aggregate( [ { "$sample": { size: 1 } } ])
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual.acao.split("\X")
 			if(len(textosBrigas)==2):
@@ -31,8 +31,8 @@ def briga(update, context):
 	
 	#marcou apenas uma pessoa, então tem que escolher outra aleatóriamente
 	elif(quantidadeNaBriga==1):
-		brigaAtual = TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { $sample: { size: 1 } } ])
-		usuarioAleatorio = Usuarios.objects.filter(username_ne=update.message.from_user.username).aggregate( [ { $sample: { size: 1 } } ])
+		brigaAtual = TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { "$sample": { size: 1 } } ])
+		usuarioAleatorio = Usuarios.objects.filter(username_ne=update.message.from_user.username).aggregate( [ { "$sample": { size: 1 } } ])
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual.acao.split("\X")
 			update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+usuarioAleatorio+textosBrigas[2])
@@ -41,7 +41,7 @@ def briga(update, context):
 			
 	#aqui tem duas pessoas marcas, então escolhe as duas e mostra a mensagem
 	elif(quantidadeNaBriga==2):
-		brigaAtual = TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { $sample: { size: 1 } } ])
+		brigaAtual = TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { "$sample": { size: 1 } } ])
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual.acao.split("\X")
 			update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+membrosDaBriga[1]+textosBrigas[2])
@@ -50,7 +50,7 @@ def briga(update, context):
 			
 	#mais que três pessoas então é briga em grupo, escolhe a mensagem apropriada e usa um for para gerar a mensagem
 	elif(quantidadeNaBriga>2):
-		brigaAtual = TextoBriga.objects.filter(quantUsuarios=quantidadeNaBriga).aggregate( [ { $sample: { size: 1 } } ])
+		brigaAtual = TextoBriga.objects.filter(quantUsuarios=quantidadeNaBriga).aggregate( [ { "$sample": { size: 1 } } ])
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual.acao.split("\X")
 			i=0
