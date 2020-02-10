@@ -23,7 +23,7 @@ def briga(update, context):
 	quantidadeNaBriga = len(membrosDaBriga)
 	#se a quantidade for 0, não marcou ninguem então a pessoa se bate, escolhe o que não marca ninguem e o que tem uma marcação no meio
 	if(quantidadeNaBriga==0):
-		brigaAtual = TextoBriga.objects.filter(quantUsuarios_lte=1).aggregate( [ { $sample: { size: 1 } } ])
+		brigaAtual = TextoBriga.objects.filter(quantUsuarios_lte=1).aggregate( [ { "$sample": { 'size': 1 } } ])
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual.acao.split("\X")
 			if(len(textosBrigas)==2):
