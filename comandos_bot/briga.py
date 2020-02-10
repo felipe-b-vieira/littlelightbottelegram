@@ -28,9 +28,9 @@ def briga(update, context):
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual['acao'].split("\X")
 			if(len(textosBrigas)==2):
-				update.message.reply_text(textosBrigas[0]+update.message.from_user.username+textosBrigas[1])
+				update.message.reply_text(textosBrigas[0]+"@"+update.message.from_user.username+textosBrigas[1])
 			else:
-				update.message.reply_text(brigaAtual.acao)
+				update.message.reply_text(brigaAtual['acao'])
 		else:
 			update.message.reply_text("Você bateu em si mesmo, bom trabalho")
 	
@@ -41,7 +41,7 @@ def briga(update, context):
 		usuarioAleatorio = Usuarios.objects.filter(username_ne=update.message.from_user.username).aggregate( [ { "$sample": { 'size': 1 } } ])
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual['acao'].split("\X")
-			update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+usuarioAleatorio+textosBrigas[2])
+			update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+"@"+usuarioAleatorio+textosBrigas[2])
 		else:
 			update.message.reply_text("Aqui vai ser feito um aleatório com outras pessoas, ainda não está pronto")
 			
