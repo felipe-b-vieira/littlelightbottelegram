@@ -2,7 +2,7 @@ from mongoengine import *
 
 	
 class TextoBriga(Document):
-    acao = StringField(required=True, max_length=300)
+	acao = StringField(required=True, max_length=300)
 	quantUsuarios = IntField(required=True, max_length=20)
 	
 #função responsável por gerar a briga
