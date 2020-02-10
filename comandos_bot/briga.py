@@ -66,7 +66,9 @@ def briga(update, context):
 #função responsável por adicionar uma nova briga
 def adiciona_briga(update, context):
 	textoAtual = update.message.text.split("@")
+	print(textoAtual)
 	senha = textoAtual[0]
+	print(senha)
 	if(senha_admin==senha):
 		textoDividido = textoAtual[1].split("\X")
 		tamTextoDividido = len(textoDividido)
