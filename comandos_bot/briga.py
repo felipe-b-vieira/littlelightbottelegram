@@ -16,14 +16,30 @@ def briga(update, context):
 
 	#verifica a quantidade de menções para poder decidir o que vai fazer
 	quantidadeNaBriga = len(membrosDaBriga)
+	
+	#se a quantidade for 0, não marcou ninguem então a pessoa se bate, escolhe o que não marca ninguem e o que tem uma marcação no meio
 	if(quantidadeNaBriga==0):
-		brigaAtual = TextoBriga.objects.filter(quantUsuarios=0).aggregate( [ { $sample: { size: 1 } } ])
+		brigaAtual = TextoBriga.objects.filter(quantUsuarios_lte=1).aggregate( [ { $sample: { size: 1 } } ])
 		if(not brigaAtual == None):
-			update.message.reply_text(brigaAtual.acao)
+			textosBrigas = brigaAtual.acao.split("\X")
+			if(len(textosBrigas)==2):
+				update.message.reply_text(textosBrigas[0]+update.message.from_user.username+textosBrigas[1])
+			else:
+				update.message.reply_text(brigaAtual.acao)
 		else:
 			update.message.reply_text("Você bateu em si mesmo, bom trabalho")
+	
+	#marcou apenas uma pessoa, então tem que escolher outra aleatóriamente
 	elif(quantidadeNaBriga==1):
-		update.message.reply_text("Aqui vai ser feito um aleatório com outras pessoas, ainda não está pronto")
+		brigaAtual = TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { $sample: { size: 1 } } ])
+		usuarioAleatorio = Usuarios.objects.filter(username_ne=update.message.from_user.username).aggregate( [ { $sample: { size: 1 } } ])
+		if(not brigaAtual == None):
+			textosBrigas = brigaAtual.acao.split("\X")
+			update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+usuarioAleatorio+textosBrigas[2])
+		else:
+			update.message.reply_text("Aqui vai ser feito um aleatório com outras pessoas, ainda não está pronto")
+			
+	#aqui tem duas pessoas marcas, então escolhe as duas e mostra a mensagem
 	elif(quantidadeNaBriga==2):
 		brigaAtual = TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { $sample: { size: 1 } } ])
 		if(not brigaAtual == None):
@@ -31,7 +47,9 @@ def briga(update, context):
 			update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+membrosDaBriga[1]+textosBrigas[2])
 		else:
 			update.message.reply_text(membrosDaBriga[0]+" bateu em "+membrosDaBriga[1])
-	elif(quantidadeNaBriga>3):
+			
+	#mais que três pessoas então é briga em grupo, escolhe a mensagem apropriada e usa um for para gerar a mensagem
+	elif(quantidadeNaBriga>2):
 		brigaAtual = TextoBriga.objects.filter(quantUsuarios=quantidadeNaBriga).aggregate( [ { $sample: { size: 1 } } ])
 		if(not brigaAtual == None):
 			textosBrigas = brigaAtual.acao.split("\X")
@@ -47,12 +65,16 @@ def briga(update, context):
 		
 #função responsável por adicionar uma nova briga
 def adiciona_briga(update, context):
-	textoAtual = update.message.text
-	textoDividido = texto.split("\X")
-	tamTextoDividido = len(textoDividido)
-	if(tamTextoDividido>0):
-		brigaDB = TextoBriga(acao = textoAtual)
-		brigaDB.quantUsuarios = tamTextoDividido-1
-		brigaDB.save()
+	textoAtual = update.message.text.split("@")
+	senha = textoAtual[0]
+	if(senha_admin==senha):
+		textoDividido = textoAtual[1].split("\X")
+		tamTextoDividido = len(textoDividido)
+		if(tamTextoDividido>0):
+			brigaDB = TextoBriga(acao = textoAtual[1])
+			brigaDB.quantUsuarios = tamTextoDividido-1
+			brigaDB.save()
+		else:
+			update.message.reply_text("Mensagem inválida")
 	else:
-		update.message.reply_text("Mensagem inválida")
+		update.message.reply_text("Senha incorreta")
