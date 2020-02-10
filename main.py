@@ -12,7 +12,7 @@ sys.path.insert(0,'./controleUsuarios')
 from auau import auau
 from boobs import boobs
 from start import start
-from briga import briga
+#from briga import briga,adiciona_briga
 from help import help
 from controle_de_usuarios import salva_usuario
 from medadinheiro import me_da_dinheiro
@@ -71,7 +71,8 @@ def main():
 	dp.add_handler(CommandHandler("help", help))
 	dp.add_handler(CommandHandler("auau", auau))
 	dp.add_handler(CommandHandler("boobs", boobs))
-	dp.add_handler(CommandHandler("briga", briga))
+	#dp.add_handler(CommandHandler("briga", briga))
+	#dp.add_handler(CommandHandler("adiciona_briga", briga))
 	dp.add_handler(CommandHandler("me_da_dinheiro", me_da_dinheiro))
 	
 	# vai ler os textos dos grupos cada vez que uma mensagem for mandada, verificar se já tenho todos os usuários do grupo salvo, senão, salvo o novo usuário
