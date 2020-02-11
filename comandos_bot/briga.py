@@ -48,6 +48,7 @@ def briga(update, context):
 	#aqui tem duas pessoas marcas, então escolhe as duas e mostra a mensagem
 	elif(quantidadeNaBriga==2):
 		brigaAtual = list(TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { "$sample": { 'size': 1 } } ]))
+		print(brigaAtual)
 		if(not brigaAtual == None):
 			brigaAtual = brigaAtual[0]
 			textosBrigas = brigaAtual['acao'].split("\X")
