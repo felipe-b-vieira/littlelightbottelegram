@@ -1,4 +1,5 @@
 from mongoengine import *
+from controle_de_usuarios import Usuarios
 import os
 
 #senha para verificar se pode adicionar
