@@ -38,7 +38,7 @@ def briga(update, context):
 	#marcou apenas uma pessoa, então tem que escolher outra aleatóriamente
 	elif(quantidadeNaBriga==1):
 		brigaAtual = list(TextoBriga.objects.filter(quantUsuarios=2).aggregate( [ { "$sample": { 'size': 1 } } ]))
-		usuarioAleatorio = Usuarios.objects.filter(username__ne=update.message.from_user.username).aggregate( [ { "$sample": { 'size': 1 } } ])
+		usuarioAleatorio = Usuarios.objects.filter(username=update.message.from_user.username).aggregate( [ { "$sample": { 'size': 1 } } ])
 		if(not brigaAtual == []):
 			brigaAtual = brigaAtual[0]
 			textosBrigas = brigaAtual['acao'].split("\X")
