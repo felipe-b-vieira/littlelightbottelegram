@@ -43,7 +43,7 @@ def briga(update, context):
 			brigaAtual = brigaAtual[0]
 			textosBrigas = brigaAtual['acao'].split("\X")
 			for userAt in usuarioAleatorio:
-				update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+"@"+str(userAt)+textosBrigas[2])
+				update.message.reply_text(textosBrigas[0]+membrosDaBriga[0]+textosBrigas[1]+"@"+str(userAt['username'])+textosBrigas[2])
 		else:
 			update.message.reply_text("Aqui vai ser feito um aleatório com outras pessoas, ainda não está pronto")
 			
