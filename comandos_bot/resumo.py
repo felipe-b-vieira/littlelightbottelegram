@@ -1,6 +1,7 @@
 import requests
 import re
 import Algorithmia
+import os
 
 
 #definição da api e algoritmo do Algorithmia
