@@ -16,7 +16,7 @@ from briga import briga,adiciona_briga
 from help import help
 from controle_de_usuarios import salva_usuario
 from medadinheiro import me_da_dinheiro
-from resumo import resumo
+from resumo import resumoingles
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
@@ -73,7 +73,7 @@ def main():
 	dp.add_handler(CommandHandler("auau", auau))
 	dp.add_handler(CommandHandler("boobs", boobs))
 	dp.add_handler(CommandHandler("briga", briga))
-	dp.add_handler(CommandHandler("resumo", resumo))
+	dp.add_handler(CommandHandler("resumoingles", resumoingles))
 	dp.add_handler(CommandHandler("adiciona_briga", adiciona_briga))
 	dp.add_handler(CommandHandler("me_da_dinheiro", me_da_dinheiro))
 	
