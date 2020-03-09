@@ -11,7 +11,7 @@ algo = client.algo('nlp/Summarizer/0.1.8')
 
 
 #função que resume a mensagem enviada
-def resumoingles(update, context):
+def resumo_ingles(update, context):
 	try:
 		# pega o texto que o usuário mandou
 		text = update.message.text
