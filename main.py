@@ -73,7 +73,7 @@ def main():
 	dp.add_handler(CommandHandler("auau", auau))
 	dp.add_handler(CommandHandler("boobs", boobs))
 	dp.add_handler(CommandHandler("briga", briga))
-	dp.add_handler(CommandHandler("resumo_ingles", resumoingles))
+	dp.add_handler(CommandHandler("resumo_ingles", resumo_ingles))
 	dp.add_handler(CommandHandler("adiciona_briga", adiciona_briga))
 	dp.add_handler(CommandHandler("me_da_dinheiro", me_da_dinheiro))
 	
