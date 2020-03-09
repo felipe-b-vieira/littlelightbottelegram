@@ -18,6 +18,6 @@ def resumo(update, context):
 		# sumariza usando o Algorithmia
 		summary = algo.pipe(text)
 		# faz o bot enviar o resultado
-		bot.sendMessage(chat_id=update.message.chat_id,text=summary.result)
+		bot.sendMessage(chat_id=update.message.chat_id,text=summary.result + "Teste")
 	except UnicodeEncodeError:
 		bot.sendMessage(chat_id=update.message.chat_id,text="I'm sorry Dave, I'm afraid I can't do that")
