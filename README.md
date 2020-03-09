@@ -17,10 +17,10 @@ Ele foi configurado pelo telegram, no entanto, não foi feito seu link, quando f
 
 No momento, para rodar o virtualenv usar C:\Users\Felgal\Desktop\telegrambot\littlelightbotenv\Scripts\activate.bat
 
-#Descrição dos comandos no Telegram:
-auau - Retorna uma foto aleatória de cachorro
-boobs - Retorna uma foto aleatória de boobs.
-medadinheiro - O bot responde se dá dinheiro ou não.
-briga - Põe as pessoas para brigar
-adiciona_briga - Adiciona uma mensagem de briga com base em \X
-resumo_ingles - Faz um resumo de um texto em inglês
+#Descrição dos comandos no Telegram:  
+auau - Retorna uma foto aleatória de cachorro  
+boobs - Retorna uma foto aleatória de boobs.  
+medadinheiro - O bot responde se dá dinheiro ou não.  
+briga - Põe as pessoas para brigar  
+adiciona_briga - Adiciona uma mensagem de briga com base em \X  
+resumo_ingles - Faz um resumo de um texto em inglês  
