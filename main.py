@@ -16,10 +16,12 @@ from briga import briga,adiciona_briga
 from help import help
 from controle_de_usuarios import salva_usuario
 from medadinheiro import me_da_dinheiro
+from resumo import resumo
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
-
+client = Algorithmia.client('API TOKEN HERE')
+algo = client.algo('nlp/Summarizer/0.1.3')
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -34,6 +36,8 @@ db_mongodb = os.environ.get('DBNAMEMONGODB', None)
 cluster_name = os.environ.get('CLUSTERNAME', None)
 cluster_code = os.environ.get('CLUSTERCODE', None)
 senha_admin = os.environ.get('SENHAADMINTELEGRAM', None)
+keyAlgorit = os.environ.get('ALGORITHMIAKEY', None)
+
 
 
 
@@ -73,6 +77,7 @@ def main():
 	dp.add_handler(CommandHandler("auau", auau))
 	dp.add_handler(CommandHandler("boobs", boobs))
 	dp.add_handler(CommandHandler("briga", briga))
+	dp.add_handler(CommandHandler("resumo", resumo))
 	dp.add_handler(CommandHandler("adiciona_briga", adiciona_briga))
 	dp.add_handler(CommandHandler("me_da_dinheiro", me_da_dinheiro))
 	
