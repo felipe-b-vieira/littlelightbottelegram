@@ -20,9 +20,6 @@ from resumo import resumo
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
-client = Algorithmia.client('API TOKEN HERE')
-algo = client.algo('nlp/Summarizer/0.1.3')
-
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 					level=logging.INFO)
