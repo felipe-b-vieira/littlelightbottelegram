@@ -36,7 +36,6 @@ db_mongodb = os.environ.get('DBNAMEMONGODB', None)
 cluster_name = os.environ.get('CLUSTERNAME', None)
 cluster_code = os.environ.get('CLUSTERCODE', None)
 senha_admin = os.environ.get('SENHAADMINTELEGRAM', None)
-keyAlgorit = os.environ.get('ALGORITHMIAKEY', None)
 
 
 

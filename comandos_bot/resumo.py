@@ -3,7 +3,8 @@ import re
 import Algorithmia
 
 
-#algoritmo de sumario usado
+#definição da api e algoritmo do Algorithmia
+keyAlgorit = os.environ.get('ALGORITHMIAKEY', None)
 client = Algorithmia.client(keyAlgorit)
 algo = client.algo('nlp/Summarizer/0.1.3')
 
