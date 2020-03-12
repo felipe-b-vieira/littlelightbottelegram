@@ -8,7 +8,7 @@ def roletaKick(update, context):
 	idUsuario =usuarioAtual.id
 	chat_id = update.message.chat_id
 	#roda o valor, se 1 é morte
-	tiro = randint(1,6)
+	tiro = randint(1,1)
 	if(tiro==1):
 		try:
 			context.bot.kick_chat_member(chat_id,idUsuario)
