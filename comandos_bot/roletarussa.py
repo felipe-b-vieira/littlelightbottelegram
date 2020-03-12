@@ -10,8 +10,9 @@ def roletaKick(update, context):
 	#roda o valor, se 1 é morte
 	tiro = randint(1,6)
 	if(tiro==1):
-		sucesso = context.bot.kick_chat_member(chat_id,idUsuario)
-		if(not sucesso):
+		try:
+			context.bot.kick_chat_member(chat_id,idUsuario)
+		except:
 			update.message.reply_text("Problema ao kickar, por favor, verificar se as condições para funcionamento estão corretas.")
 	else:
 		update.message.reply_text("Você sobreviveu.")
