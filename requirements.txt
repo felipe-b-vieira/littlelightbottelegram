@@ -1,6 +1,6 @@
 algorithmia==1.2.1
 algorithmia-api-client==1.1.0
-certifi==2019.11.28
+certifi==2022.12.7
 cffi==1.13.2
 chardet==3.0.4
 Click==7.0
